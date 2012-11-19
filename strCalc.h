@@ -1,3 +1,3 @@
 
-int Add(char* numbers);
+int Add(char* strNumbers);
 

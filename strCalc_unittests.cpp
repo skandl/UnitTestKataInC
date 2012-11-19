@@ -10,57 +10,47 @@ int main(int ac, char** av)
 	   return CommandLineTestRunner::RunAllTests(ac, av);
 }
 
-
-TEST_GROUP(strCalcGrp)
+TEST_GROUP(strCalcTests)
 {
 
 };
 
-TEST(strCalcGrp, strCalc_null)
+TEST(strCalcTests, first)
 {
-	char s[]="";
-	CHECK_EQUAL(Add(0),0);
-	CHECK_EQUAL(Add(s),0);
+	char s[]="1";
+	CHECK_EQUAL(1,Add(s));
 }
 
-TEST(strCalcGrp, strCalc_invalidStr)
+TEST(strCalcTests, twoNums)
 {
-	char s1[]="asdf";
-	char s2[]="asdf ghsfdlg; kjsf";
-	CHECK_EQUAL(Add(s1),0);
-	CHECK_EQUAL(Add(s2),0);
+	char s[]="1 2";
+	CHECK_EQUAL(3,Add(s));
 }
 
-TEST(strCalcGrp, strCalc_oneNum)
+TEST(strCalcTests, threeNums)
 {
-	char s1[]="1";
-	char s2[]="93251";
-	CHECK_EQUAL(Add(s1),1);
-	CHECK_EQUAL(Add(s2),93251);
+	char s[]="1, -10, 12";
+	CHECK_EQUAL(3,Add(s));
 }
 
-TEST(strCalcGrp, strCalc_twoNums)
+TEST(strCalcTests, test1)
 {
-	char s1[]="1 0";
-	char s2[]="-21 2";
-	CHECK_EQUAL(Add(s1),1);
-	CHECK_EQUAL(Add(s2),-19);
+	char s[]="1\n2,3";
+	CHECK_EQUAL(6,Add(s));
 }
 
-TEST(strCalcGrp, strCalc_threeNums)
+TEST(strCalcTests, test2)
 {
-	char s[]="1 2 3";
-	CHECK_EQUAL(Add(s),6);
-}
-
-TEST(strCalcGrp, strCalc_mixed)
-{
-	char s[]="1,2 3";
-	CHECK_EQUAL(6, Add(s));
+	char s[]="1";
+	CHECK_EQUAL(1,Add(s));
 }
 
 
-
+TEST(strCalcTests, test3)
+{
+	char s[]="//%\n12, 48%-48";
+	CHECK_EQUAL(12,Add(s));
+}
 
 
 
