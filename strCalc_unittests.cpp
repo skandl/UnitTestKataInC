@@ -1,7 +1,8 @@
 #include <CppUTest/CommandLineTestRunner.h>
 
+// Externs for functions under test
 extern "C"{
-#include "strCalc.h"
+	extern int Add(char* strNumbers);
 }
 
 // Exec unit tests
@@ -10,47 +11,15 @@ int main(int ac, char** av)
 	   return CommandLineTestRunner::RunAllTests(ac, av);
 }
 
+// Test group and unit tests
 TEST_GROUP(strCalcTests)
 {
 
 };
 
+// Sample test 
 TEST(strCalcTests, first)
 {
-	char s[]="1";
-	CHECK_EQUAL(1,Add(s));
+	CHECK_EQUAL(-1,Add(NULL));
 }
-
-TEST(strCalcTests, twoNums)
-{
-	char s[]="1 2";
-	CHECK_EQUAL(3,Add(s));
-}
-
-TEST(strCalcTests, threeNums)
-{
-	char s[]="1, -10, 12";
-	CHECK_EQUAL(3,Add(s));
-}
-
-TEST(strCalcTests, test1)
-{
-	char s[]="1\n2,3";
-	CHECK_EQUAL(6,Add(s));
-}
-
-TEST(strCalcTests, test2)
-{
-	char s[]="1";
-	CHECK_EQUAL(1,Add(s));
-}
-
-
-TEST(strCalcTests, test3)
-{
-	char s[]="//%\n12, 48%-48";
-	CHECK_EQUAL(12,Add(s));
-}
-
-
 
